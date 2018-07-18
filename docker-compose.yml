@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+
+  mgr1:
+    build: .
+    environment:
+      - LOG_LEVEL=10
+      - JOIN_MONITOR_HOST=192.168.1.2
+
+  mgr2:
+    build: .
+    environment:
+      - LOG_LEVEL=10
+      - JOIN_MONITOR_HOST=mon1
+
