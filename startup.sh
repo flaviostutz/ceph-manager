@@ -74,4 +74,14 @@ fi
 
 echo ""
 echo "Starting Manager Daemon $CLUSTER_NAME-$MANAGER_NAME..."
+
+enableModules() {
+    echo "Waiting 5s before enabling modules..."
+    sleep 5
+    ceph mgr module enable prometheus
+    # ceph mgr module enable dashboard
+    echo "Module prometheus enabled"
+}
+
+enableModules &
 ceph-mgr -d --debug_ms $LOG_LEVEL --id $MANAGER_NAME --cluster $CLUSTER_NAME --mgr-data ${MANAGER_PATH} --keyring ${MANAGER_PATH}/keyring

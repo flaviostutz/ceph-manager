@@ -15,16 +15,47 @@ services:
 
   mgr1:
     build: .
+    ports:
+      - 18443:8443 #dashboard https
+      - 18003:8003 #restful https
+      - 19283:9283 #prometheus
     environment:
       - PEER_MONITOR_HOST=mon0
       - ETCD_URL=http://etcd0:2379
 
   mgr2:
     build: .
+    ports:
+      - 28443:8443 #dashboard https
+      - 28003:8003 #restful https
+      - 29283:9283 #prometheus
     environment:
       - PEER_MONITOR_HOST=mon0
       - ETCD_URL=http://etcd0:2379
 
-volumes:
-  etcd0:
-  mon0:
+  osd1:
+    # image: flaviostutz/ceph-osd
+    image: fcf9bc73d990
+    environment:
+      - PEER_MONITOR_HOST=mon0
+      - OSD_EXT4_SUPPORT=true
+      - OSD_JOURNAL_SIZE=512
+      - ETCD_URL=http://etcd0:2379
+
+  osd2:
+    # image: flaviostutz/ceph-osd
+    image: fcf9bc73d990
+    environment:
+      - PEER_MONITOR_HOST=mon0
+      - OSD_EXT4_SUPPORT=true
+      - OSD_JOURNAL_SIZE=512
+      - ETCD_URL=http://etcd0:2379
+
+  osd3:
+    # image: flaviostutz/ceph-osd
+    image: fcf9bc73d990
+    environment:
+      - PEER_MONITOR_HOST=mon0
+      - OSD_EXT4_SUPPORT=true
+      - OSD_JOURNAL_SIZE=512
+      - ETCD_URL=http://etcd0:2379
