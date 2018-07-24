@@ -57,6 +57,7 @@ if [ ! -f /initialized ]; then
             exit 2
         fi
         echo "Retrying in 1s..."
+        sleep 1
     done
     cp /etc/ceph/keyring ${MANAGER_PATH}/keyring
 
@@ -79,8 +80,11 @@ enableModules() {
     echo "Waiting 5s before enabling modules..."
     sleep 5
     ceph mgr module enable prometheus
-    # ceph mgr module enable dashboard
-    echo "Module prometheus enabled"
+    ceph mgr module enable dashboard
+    ceph dashboard create-self-signed-cert
+    ceph mgr module disable dashboard
+    ceph mgr module enable dashboard
+    echo "Modules prometheus and dashboard enabled"
 }
 
 enableModules &

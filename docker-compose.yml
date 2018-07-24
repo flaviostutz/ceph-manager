@@ -12,6 +12,14 @@ services:
     image: flaviostutz/ceph-monitor
     environment:
       - ETCD_URL=http://etcd0:2379
+      - PEER_MONITOR_HOST=mon1
+      - CREATE_CLUSTER_IF_PEER_DOWN=true
+
+  mon1:
+    image: flaviostutz/ceph-monitor
+    environment:
+      - ETCD_URL=http://etcd0:2379
+      - PEER_MONITOR_HOST=mon0
 
   mgr1:
     build: .
@@ -34,8 +42,7 @@ services:
       - ETCD_URL=http://etcd0:2379
 
   osd1:
-    # image: flaviostutz/ceph-osd
-    image: fcf9bc73d990
+    image: flaviostutz/ceph-osd
     environment:
       - PEER_MONITOR_HOST=mon0
       - OSD_EXT4_SUPPORT=true
@@ -43,8 +50,7 @@ services:
       - ETCD_URL=http://etcd0:2379
 
   osd2:
-    # image: flaviostutz/ceph-osd
-    image: fcf9bc73d990
+    image: flaviostutz/ceph-osd
     environment:
       - PEER_MONITOR_HOST=mon0
       - OSD_EXT4_SUPPORT=true
@@ -52,8 +58,7 @@ services:
       - ETCD_URL=http://etcd0:2379
 
   osd3:
-    # image: flaviostutz/ceph-osd
-    image: fcf9bc73d990
+    image: flaviostutz/ceph-osd
     environment:
       - PEER_MONITOR_HOST=mon0
       - OSD_EXT4_SUPPORT=true
