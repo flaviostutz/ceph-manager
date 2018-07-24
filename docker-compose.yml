@@ -2,15 +2,29 @@ version: '3.5'
 
 services:
 
+  etcd0:
+    image: quay.io/coreos/etcd
+    environment:
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd0:2379
+
+  mon0:
+    image: flaviostutz/ceph-monitor
+    environment:
+      - ETCD_URL=http://etcd0:2379
+
   mgr1:
     build: .
     environment:
-      - LOG_LEVEL=10
-      - JOIN_MONITOR_HOST=192.168.1.2
+      - PEER_MONITOR_HOST=mon0
+      - ETCD_URL=http://etcd0:2379
 
   mgr2:
     build: .
     environment:
-      - LOG_LEVEL=10
-      - JOIN_MONITOR_HOST=mon1
+      - PEER_MONITOR_HOST=mon0
+      - ETCD_URL=http://etcd0:2379
 
+volumes:
+  etcd0:
+  mon0:

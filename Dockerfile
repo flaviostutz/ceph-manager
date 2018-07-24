@@ -1,14 +1,12 @@
-# FROM flaviostutz/ceph-base:latest
-FROM cd319cebcf35
+FROM flaviostutz/ceph-base
 
 ENV CLUSTER_NAME 'ceph'
-ENV JOIN_MONITOR_HOST ''
-ENV MANAGER_NAME ''
+ENV PEER_MONITOR_HOST ''
+ENV ETCD_URL ''
+ENV LOG_LEVEL 0
 
 ADD startup.sh /
 ADD ceph.conf.template /
-
-EXPOSE 6789
 
 CMD [ "/startup.sh" ]
 
