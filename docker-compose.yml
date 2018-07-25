@@ -28,6 +28,7 @@ services:
       - 18003:8003 #restful https
       - 19283:9283 #prometheus
     environment:
+      - LOG_LEVEL=0
       - PEER_MONITOR_HOST=mon0
       - ETCD_URL=http://etcd0:2379
 
@@ -38,6 +39,7 @@ services:
       - 28003:8003 #restful https
       - 29283:9283 #prometheus
     environment:
+      - LOG_LEVEL=0
       - PEER_MONITOR_HOST=mon0
       - ETCD_URL=http://etcd0:2379
 
