@@ -53,9 +53,9 @@ services:
   mon0:
     image: flaviostutz/ceph-monitor
     environment:
+      - CREATE_CLUSTER=true
       - ETCD_URL=http://etcd0:2379
       - PEER_MONITOR_HOST=mon1
-      - CREATE_CLUSTER_IF_PEER_DOWN=true
 
   mon1:
     image: flaviostutz/ceph-monitor
