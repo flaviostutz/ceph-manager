@@ -8,8 +8,8 @@ if [ "$CLUSTER_NAME" == "" ]; then
     exit 1
 fi
 
-if [ "$PEER_MONITOR_HOST" == "" ]; then
-    echo "JOIN_MONITOR_HOST cannot be empty"
+if [ "$MONITOR_HOSTS" == "" ]; then
+    echo "MONITOR_HOSTS cannot be empty"
     exit 1
 fi
 

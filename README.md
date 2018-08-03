@@ -26,13 +26,13 @@ services:
   mgr1:
     image: flaviostutz/ceph-manager
     environment:
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - ETCD_URL=http://etcd0:2379
 
   mgr2:
     image: flaviostutz/ceph-manager
     environment:
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - ETCD_URL=http://etcd0:2379
 
 ```
@@ -55,13 +55,13 @@ services:
     environment:
       - CREATE_CLUSTER=true
       - ETCD_URL=http://etcd0:2379
-      - PEER_MONITOR_HOST=mon1
+      - PEER_MONITOR_HOSTS=mon1
 
   mon1:
     image: flaviostutz/ceph-monitor
     environment:
       - ETCD_URL=http://etcd0:2379
-      - PEER_MONITOR_HOST=mon0
+      - PEER_MONITOR_HOSTS=mon0
 
   mgr1:
     image: flaviostutz/ceph-manager
@@ -71,7 +71,7 @@ services:
       - 19283:9283 #prometheus
     environment:
       - LOG_LEVEL=0
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - ETCD_URL=http://etcd0:2379
 
   mgr2:
@@ -82,13 +82,13 @@ services:
       - 29283:9283 #prometheus
     environment:
       - LOG_LEVEL=0
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - ETCD_URL=http://etcd0:2379
 
   osd1:
     image: flaviostutz/ceph-osd
     environment:
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - OSD_EXT4_SUPPORT=true
       - OSD_JOURNAL_SIZE=512
       - ETCD_URL=http://etcd0:2379
@@ -96,7 +96,7 @@ services:
   osd2:
     image: flaviostutz/ceph-osd
     environment:
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - OSD_EXT4_SUPPORT=true
       - OSD_JOURNAL_SIZE=512
       - ETCD_URL=http://etcd0:2379
@@ -104,7 +104,7 @@ services:
   osd3:
     image: flaviostutz/ceph-osd
     environment:
-      - PEER_MONITOR_HOST=mon0
+      - MONITOR_HOSTS=mon0
       - OSD_EXT4_SUPPORT=true
       - OSD_JOURNAL_SIZE=512
       - ETCD_URL=http://etcd0:2379
