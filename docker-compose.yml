@@ -25,6 +25,7 @@ services:
 
   mgr1:
     build: .
+    image: flaviostutz/ceph-manager
     pid: host
     ports:
       - 18443:8443 #dashboard https
@@ -37,6 +38,7 @@ services:
 
   mgr2:
     build: .
+    image: flaviostutz/ceph-manager
     pid: host
     ports:
       - 28443:8443 #dashboard https
