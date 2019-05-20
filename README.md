@@ -3,6 +3,8 @@ Ceph Manager container image.
 
 This image will retrieve keyring from ETCD in order to register the managers with monitors.
 
+Attention: You need to run this daemon in a machine running Kernel >= 4.5.2
+
 # Usage
 
 docker-compose.yml for manager in HA (simple)
