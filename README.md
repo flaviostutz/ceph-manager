@@ -1,4 +1,7 @@
 # ceph-manager
+
+[<img src="https://img.shields.io/docker/automated/flaviostutz/ceph-manager"/>](https://hub.docker.com/r/flaviostutz/ceph-manager)
+
 Ceph Manager container image.
 
 This image will retrieve keyring from ETCD in order to register the managers with monitors.
